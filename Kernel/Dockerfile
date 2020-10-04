@@ -12,6 +12,7 @@ RUN apt-get update -qq && \
         libc6-dev \
         libssl-dev \
         make \
+        openssh-client \
         python3-minimal \
         zip && \
     apt-get autoremove -y && \
