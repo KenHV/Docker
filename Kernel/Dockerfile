@@ -19,10 +19,10 @@ RUN apt-get update -qq && \
     apt-get clean autoclean && \
     rm -rf /var/lib/apt/lists/*
 RUN git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9 \
-    --depth=1 $HOME/toolchains/aarch64
+    --depth=1 /root/toolchains/aarch64
 RUN git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8 \
-    --depth=1 $HOME/toolchains/aarch32
+    --depth=1 /root/toolchains/aarch32
 RUN git clone https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86 \
-    --depth=1 $HOME/toolchains/clang
+    --depth=1 /root/toolchains/clang
 RUN git config --global user.email "kenhv@null.net"
 RUN git config --global user.name "KenHV"
