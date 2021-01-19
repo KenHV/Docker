@@ -25,6 +25,7 @@ RUN apk add --no-cache=true --update \
     libffi-dev \
     libpq \
     libwebp-dev \
+    libwebp-tools \
     libxml2 \
     libxml2-dev \
     libxslt-dev \
