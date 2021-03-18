@@ -63,3 +63,5 @@ RUN pip install -r requirements.txt
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 CMD ["python3"]
+
+# vim: ft=dockerfile
