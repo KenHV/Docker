@@ -24,7 +24,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./KensurBot/Dockerfile-debian
+          file: ./Dockerfile-KensurBot
           platforms: linux/amd64
           push: true
           tags: kenhv/kensurbot:debian
