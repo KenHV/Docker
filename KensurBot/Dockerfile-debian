@@ -44,7 +44,7 @@ RUN set -ex \
     && chown root:root /usr/bin/chromedriver \
     && chmod 0755 /usr/bin/chromedriver \
     # Install Python modules
-    && pip3 install -r requirements.txt \
+    && pip3 install --no-cache-dir -r requirements.txt \
     && rm requirements.txt \
     # Cleanup
     && apt-get -qq -y purge --auto-remove \
