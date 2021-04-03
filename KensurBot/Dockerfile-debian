@@ -3,18 +3,20 @@ FROM python:slim-buster
 ENV DEBIAN_FRONTEND noninteractive
 
 ADD https://raw.githubusercontent.com/KenHV/KensurBot/staging/requirements.txt requirements.txt
+
 RUN set -ex \
+    # Install dependencies
+    && sed -i 's/ main/ main contrib non-free/g' /etc/apt/sources.list \
     && apt-get -qq update \
     && apt-get -qq -y install --no-install-recommends \
-        apt-utils \
         aria2 \
         bash \
-        build-essential \
+        chromium \
+        chromium-driver \
         curl \
         ffmpeg \
         figlet \
         git \
-        gnupg2 \
         jq \
         libpq-dev \
         libssl-dev \
@@ -24,28 +26,23 @@ RUN set -ex \
         neofetch \
         postgresql \
         pv \
+        rar \
         sudo \
         unar \
-        unrar-free \
+        unrar \
         unzip \
         wget \
         xz-utils \
         zip \
-    # Install Google Chrome
-    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
-    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && apt-get -qq update \
-    && apt-get -qq -y install google-chrome-stable \
-    # Install chromedriver
-    && wget -N https://chromedriver.storage.googleapis.com/$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip -P ~/ \
-    && unzip ~/chromedriver_linux64.zip -d ~/ \
-    && rm ~/chromedriver_linux64.zip \
-    && mv -f ~/chromedriver /usr/bin/chromedriver \
-    && chown root:root /usr/bin/chromedriver \
-    && chmod 0755 /usr/bin/chromedriver \
+        # Non-runtime dependencies
+        apt-utils \
+        build-essential \
+        gnupg2 \
+
     # Install Python modules
     && pip3 install --no-cache-dir -r requirements.txt \
     && rm requirements.txt \
+
     # Cleanup
     && apt-get -qq -y purge --auto-remove \
         apt-utils \
