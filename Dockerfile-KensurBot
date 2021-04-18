@@ -1,8 +1,6 @@
 FROM python:slim-buster
 
-ENV DEBIAN_FRONTEND noninteractive
-
-ADD https://raw.githubusercontent.com/KenHV/KensurBot/staging/requirements.txt requirements.txt
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN set -ex \
     # Install dependencies
@@ -39,6 +37,7 @@ RUN set -ex \
         build-essential \
         gnupg2 \
     # Install Python modules
+    && wget https://raw.githubusercontent.com/KenHV/KensurBot/staging/requirements.txt \
     && pip3 install --no-cache-dir -r requirements.txt \
     && rm requirements.txt \
     # Cleanup
