@@ -1,9 +1,9 @@
-name: Docker builder
+name: MirrorBot Docker builder
 
 on:
   push:
-    branches:
-      - master
+    paths:
+      - "Dockerfile-MirrorBot"
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
@@ -24,10 +24,10 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./Dockerfile-KensurBot
+          file: ./Dockerfile-MirrorBot
           platforms: linux/amd64
           push: true
-          tags: kenhv/kensurbot:debian
+          tags: kenhv/mirrorbot:debian
 
       - name: Alert via Telegram
         run: |
@@ -35,4 +35,4 @@ jobs:
               curl -s "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendmessage" \
               --data "text=${*}&chat_id=${{ secrets.TELEGRAM_TO }}&parse_mode=Markdown&disable_notification=True"
           }
-          sendTG "*KensurBot docker container has been updated:* [Link](https://hub.docker.com/r/kenhv/kensurbot/tags)" &> /dev/null
+          sendTG "*MirrorBot docker container has been updated:* [Link](https://hub.docker.com/r/kenhv/mirrorbot/tags)" &> /dev/null
