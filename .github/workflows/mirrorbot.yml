@@ -27,7 +27,7 @@ jobs:
           file: ./Dockerfile-MirrorBot
           platforms: linux/amd64
           push: true
-          tags: kenhv/mirrorbot:debian
+          tags: kenhv/mirrorbot:ubuntu
 
       - name: Alert via Telegram
         run: |
