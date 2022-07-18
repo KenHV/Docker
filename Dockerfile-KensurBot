@@ -43,6 +43,7 @@ RUN set -ex \
         xz-utils \
         zip \
     # Install Python modules
+    && python -m pip install --upgrade pip \
     && wget https://raw.githubusercontent.com/KenHV/KensurBot/staging/requirements.txt \
     && pip3 install --no-cache-dir -r requirements.txt \
     && rm requirements.txt \
