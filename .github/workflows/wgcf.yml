@@ -1,9 +1,9 @@
-name: KensurBot Docker builder
+name: wgcf Docker builder
 
 on:
   push:
     paths:
-      - "Dockerfile-KensurBot"
+      - "wgcf/Dockerfile"
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
@@ -29,8 +29,8 @@ jobs:
       - name: Build and publish to Docker Hub
         uses: docker/build-push-action@v3.1.1
         with:
-          context: .
-          file: ./Dockerfile-KensurBot
-          platforms: linux/amd64,linux/arm64
+          context: ./wgcf/
+          file: ./wgcf/Dockerfile
+          platforms: linux/amd64
           push: true
-          tags: kenhv/kensurbot:debian
+          tags: kenhv/wgcf:latest
